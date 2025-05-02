@@ -6,6 +6,22 @@ __pycache__/
 # C extensions
 *.so
 
+# Environment
+.env
+venv/
+env/
+*.env
+
+# Logs
+*.log
+logs/
+
+# Temp files & artifacts
+temp_files/
+vector_db/
+*.sqlite
+*.db
+
 # Distribution / packaging
 .Python
 build/

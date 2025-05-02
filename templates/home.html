@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LogGenie - Ask & Analyze</title>
+</head>
+<body>
+    <h2>Ask a Question About Your Logs</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li style="color: {% if category == 'error' %}red{% else %}green{% endif %};">
+                {{ message }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% if question %}
+        <p><strong>Question:</strong> {{ question }}</p>
+    {% endif %}
+    {% if answer %}
+        <p><strong>Answer:</strong> {{ answer }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('ask') }}" method="post">
+        <input type="text" name="question" placeholder="e.g., What errors occurred?" required>
+        <input type="submit" value="Ask">
+    </form>
+
+    <h3>🔍 Analyze Logs Automatically</h3>
+    <form action="{{ url_for('analyze') }}" method="get">
+        <input type="submit" value="Analyze Logs">
+    </form>
+
+    {% if warnings %}
+        <h4>Warnings Detected:</h4>
+        <ul>{% for warn in warnings %}<li>{{ warn }}</li>{% endfor %}</ul>
+    {% endif %}
+
+    {% if errors %}
+        <h4>Errors Detected:</h4>
+        <ul>{% for err in errors %}<li>{{ err }}</li>{% endfor %}</ul>
+    {% endif %}
+
+    {% if performance %}
+        <h4>Performance Metrics:</h4>
+        <ul>
+            {% for key, val in performance.items() %}
+                <li>{{ key }}: {{ val }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if insights %}
+        <h4>Advanced Insights:</h4>
+        <ul>{% for insight in insights %}<li>{{ insight }}</li>{% endfor %}</ul>
+    {% endif %}
+</body>
+</html>

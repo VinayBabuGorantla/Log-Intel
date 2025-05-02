@@ -1,0 +1,30 @@
+# Web framework
+flask
+jinja2
+
+# File parsing & compression
+python-magic
+zipfile36
+
+# NLP & LLM
+transformers
+sentence-transformers
+huggingface_hub
+
+# LangChain
+langchain-community
+
+# Vector database
+chromadb
+
+# Environment
+python-dotenv
+
+# Utilities
+tqdm
+
+# Logging and error handling
+rich
+
+pytest
+-e .
